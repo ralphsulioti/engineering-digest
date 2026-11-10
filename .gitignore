@@ -1,0 +1,7 @@
+.env
+config/local.yaml
+data/
+.venv/
+__pycache__/
+.idea/
+.vscode/

@@ -1,0 +1,20 @@
+[project]
+name = "engineering-digest"
+version = "0.1.0"
+description = "A weekly digest of software engineering, AI coding and security news, built on your own machine from RSS feeds: collected daily, ranked for relevance, and summarized with source links."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+engineering-digest = "engineering_digest:main"
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
