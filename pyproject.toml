@@ -4,7 +4,11 @@ version = "0.1.0"
 description = "A weekly digest of software engineering, AI coding and security news, built on your own machine from RSS feeds: collected daily, ranked for relevance, and summarized with source links."
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pydantic>=2.14.3",
+    "pydantic-settings>=2.16.2",
+    "pyyaml>=6.0.3",
+]
 
 [project.scripts]
 engineering-digest = "engineering_digest:main"

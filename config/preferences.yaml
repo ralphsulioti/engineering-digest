@@ -1,0 +1,46 @@
+# Keywords match whole words, ignoring case; a trailing * matches any ending ("agent*" matches "agents").
+digest_interval_days: 7
+
+# The bar every item has to clear. There's no fixed number of items: a slow week has few, a big week has many.
+relevance_question: >-
+  Would this help a working software engineer do the job better, stay current with tools
+  and practices, protect their systems, or advance their career?
+
+topics:
+  ai-coding-tools:
+    label: AI coding tools and agents
+    keywords: [Claude Code, Codex, Copilot, Cursor, OpenCode, coding agent*, AI coding,
+      agentic, agent*, subagent*, MCP, Model Context Protocol, Agent Skills, vibe*,
+      code review, code generation]
+  ai-models:
+    label: AI models and LLM engineering
+    keywords: [LLM*, GPT*, Claude, Gemini, Kimi, Llama, Qwen, DeepSeek, Mistral, open-weight,
+      frontier model*, AI model*, benchmark*, eval*, prompt injection, reasoning,
+      context window, inference, fine-tun*, RAG, embedding*, Model Spec, misalignment]
+  engineering-practices:
+    label: Software engineering practices and careers
+    keywords: [software engineering, architecture, design pattern*, testing, regression,
+      refactor*, technical debt, code quality, reliability, SRE, on-call, incident*,
+      postmortem, outage, observability, telemetry, monitoring, platform engineering, DevOps,
+      CI/CD, deployment*, microservice*, monolith, distributed system*, database*, scaling,
+      scalab*, performance, latency, source control, version control, developer productivity,
+      DORA, engineering culture, career*, staff engineer, engineering manager*, interview*,
+      layoff*, developers, Octoverse, CS education]
+  security:
+    label: Widespread vulnerabilities and supply-chain attacks
+    keywords: [CVE-*, CVSS, vulnerabilit*, zero-day, 0-day, exploit*, RCE, remote code execution,
+      code execution, flaw*, supply chain, malicious, browser extension*, backdoor, npm, PyPI, crates.io,
+      typosquat*, security update*, security release*, security fix*, patch*, credential*,
+      token theft, secret*, sandbox*, OAuth]
+  your-stack:
+    label: Your languages, tools and APIs
+    keywords: [Python, Django, FastAPI, Pydantic, uv, Ruff, pytest, TypeScript, JavaScript,
+      Node.js, React, Vite, SQLite, PostgreSQL, Git, GitHub, GitHub Actions, VS Code, Windows,
+      Playwright, API*]
+
+# Dropped before ranking: promotions, roundups that repeat single stories, and quote-only posts.
+exclude_keywords: [webinar, sponsored, Program Committee, QCon, Dev Summit, Quoting, Music Video,
+  Weekly Recap, ThreatsDay, partnership]
+
+# Release feeds publish alphas, betas and release candidates; only final releases are kept.
+skip_prerelease_versions: true
