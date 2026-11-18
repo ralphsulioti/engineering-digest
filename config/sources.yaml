@@ -1,0 +1,96 @@
+# The feeds to collect from. Each source has:
+#   id           a short unique name, used in the database and in config/local.yaml
+#   name         shown in the digest
+#   url          an RSS or Atom feed
+#   kind         primary (the maker's own announcements), commentary (a writer's analysis)
+#                or aggregator (news gathered from elsewhere)
+#   credibility  1-5, how much you trust it; part of each article's score
+#   rollup       true groups a product's entries in one digest into a single item (default false)
+#   topics       topics given to entries whose title matches no topic keyword, for feeds whose
+#                titles are only version numbers (default none)
+#   enabled      false skips the source (default true)
+
+sources:
+  - id: claude-code-releases
+    name: Claude Code releases
+    url: https://github.com/anthropics/claude-code/releases.atom
+    kind: primary
+    credibility: 5
+    rollup: true
+    topics: [ai-coding-tools]
+
+  - id: codex-releases
+    name: OpenAI Codex releases
+    url: https://github.com/openai/codex/releases.atom
+    kind: primary
+    credibility: 5
+    rollup: true
+    topics: [ai-coding-tools]
+
+  - id: cursor-changelog
+    name: Cursor changelog
+    url: https://cursor.com/changelog/rss.xml
+    kind: primary
+    credibility: 4
+    rollup: true
+    topics: [ai-coding-tools]
+
+  - id: github-changelog
+    name: GitHub Changelog
+    url: https://github.blog/changelog/feed/
+    kind: primary
+    credibility: 5
+
+  - id: openai-news
+    name: OpenAI News
+    url: https://openai.com/news/rss.xml
+    kind: primary
+    credibility: 4
+
+  - id: simon-willison
+    name: Simon Willison's Weblog
+    url: https://simonwillison.net/atom/everything/
+    kind: commentary
+    credibility: 5
+
+  - id: martin-fowler
+    name: Martin Fowler
+    url: https://martinfowler.com/feed.atom
+    kind: commentary
+    credibility: 5
+    topics: [engineering-practices]
+
+  - id: pragmatic-engineer
+    name: The Pragmatic Engineer
+    url: https://newsletter.pragmaticengineer.com/feed
+    kind: commentary
+    credibility: 5
+    topics: [engineering-practices]
+
+  - id: infoq
+    name: InfoQ
+    url: https://feed.infoq.com/
+    kind: aggregator
+    credibility: 4
+
+  # Security news, not Y Combinator's Hacker News.
+  - id: the-hacker-news
+    name: The Hacker News
+    url: https://feeds.feedburner.com/TheHackersNews
+    kind: aggregator
+    credibility: 3
+
+  # Supply-chain security.
+  - id: socket-blog
+    name: Socket blog
+    url: https://socket.dev/api/blog/feed.atom
+    kind: primary
+    credibility: 4
+
+  - id: python-insider
+    name: Python Insider
+    url: https://blog.python.org/feeds/posts/default
+    kind: primary
+    credibility: 5
+    rollup: true
+    topics: [your-stack]

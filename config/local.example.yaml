@@ -1,0 +1,18 @@
+# Personal settings. Copy this file to config/local.yaml, which git ignores, and uncomment what you need.
+
+# A source whose id is in sources.yaml changes only the fields listed here.
+# A new id adds a source, and needs every field that sources.yaml describes.
+# sources:
+#   - id: the-hacker-news
+#     enabled: false
+#   - id: risky-bulletin
+#     name: Risky Bulletin
+#     url: https://news.risky.biz/rss/
+#     kind: aggregator
+#     credibility: 4
+
+# Mappings merge key by key into preferences.yaml; any other value replaces the one there.
+# preferences:
+#   topics:
+#     your-stack:
+#       keywords: [Python, Django, Rust]
