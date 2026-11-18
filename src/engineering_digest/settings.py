@@ -91,13 +91,17 @@ def load_settings(root: Path = PROJECT_ROOT) -> Settings:
         # An empty or all-comments file loads as None.
         local = _validate(_LocalFile, _read_yaml(root / LOCAL_FILE) or {}, LOCAL_FILE)
 
-    sources = _merge_sources(sources_file.sources, local.sources)
+    sources: tuple[Source, ...] = _merge_sources(sources_file.sources, local.sources)
     if local.preferences:
-        merged = _merge(preferences.model_dump(mode="json"), local.preferences)
+        merged: YamlMapping = _merge(
+            preferences.model_dump(mode="json"), local.preferences
+        )
         preferences = _validate(Preferences, merged, LOCAL_FILE)
 
     for source in sources:
-        unknown = [topic for topic in source.topics if topic not in preferences.topics]
+        unknown: list[str] = [
+            topic for topic in source.topics if topic not in preferences.topics
+        ]
         if unknown:
             raise ConfigError(
                 f"Source {source.name!r} lists topics that aren't in "
@@ -123,13 +127,15 @@ def _merge_sources(
         by_id[source.id] = source
 
     for entry in overrides:
-        source_id = entry.get("id")
+        source_id: object = entry.get("id")
         if not isinstance(source_id, str):
             raise ConfigError(
                 f"{LOCAL_FILE.as_posix()}: {_source_label(entry)} needs an id"
             )
-        base = by_id[source_id].model_dump(mode="json") if source_id in by_id else {}
-        merged = base | entry
+        base: YamlMapping = (
+            by_id[source_id].model_dump(mode="json") if source_id in by_id else {}
+        )
+        merged: YamlMapping = base | entry
         by_id[source_id] = _validate(Source, merged, LOCAL_FILE, _source_label(merged))
     return tuple(by_id.values())
 
@@ -146,11 +152,11 @@ def _merge(base: YamlMapping, override: YamlMapping) -> YamlMapping:
 
 
 def _source_label(entry: YamlMapping) -> str:
-    label = entry.get("name") or entry.get("id")
+    label: object = entry.get("name") or entry.get("id")
     return f"source {label!r}" if label else "a source with no name or id"
 
 
-def _read_yaml(path: Path) -> Any:
+def _read_yaml(path: Path) -> object:
     # Reading from the open file puts its path in any YAML syntax error.
     with path.open(encoding="utf-8") as file:
         return yaml.safe_load(file)
@@ -163,7 +169,7 @@ def _validate[M: BaseModel](
     try:
         return model.model_validate(data)
     except ValidationError as error:
-        problems = [
+        problems: list[str] = [
             f"{'.'.join(map(str, problem['loc']))}: {problem['msg']}"
             if problem["loc"]
             else problem["msg"]
