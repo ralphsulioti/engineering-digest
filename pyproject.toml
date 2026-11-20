@@ -5,6 +5,7 @@ description = "A weekly digest of software engineering, AI coding and security n
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "feedparser>=6.0.14",
     "pydantic>=2.14.3",
     "pydantic-settings>=2.16.2",
     "pyyaml>=6.0.3",
